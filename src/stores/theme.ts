@@ -20,4 +20,5 @@ export const useThemeStore = defineStore('theme', {
       this.setMode(this.mode)
     },
   },
+  persist: true,
 })
