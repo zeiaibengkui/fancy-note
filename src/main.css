@@ -1,0 +1,31 @@
+.fade-from-top-enter-active,
+.fade-from-top-leave-active {
+  transition: all 0.5s ease;
+}
+
+.fade-from-top-enter-from,
+.fade-from-top-leave-to {
+  opacity: 0;
+  transform: translateY(-20vh);
+}
+
+.fade-from-top-leave-active,
+.fade-from-top-leave-to {
+  position: absolute;
+}
+
+.fade-from-bottom-enter-active,
+.fade-from-bottom-leave-active {
+  transition: all 0.35s ease;
+}
+
+.fade-from-bottom-enter-from,
+.fade-from-bottom-leave-to {
+  opacity: 0;
+  transform: translateY(5em);
+}
+
+.fade-from-bottom-leave-active,
+.fade-from-bottom-leave-to {
+  position: absolute;
+}

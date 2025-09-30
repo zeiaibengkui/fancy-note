@@ -1,6 +1,9 @@
 import type { PGlite } from '@electric-sql/pglite'
-import { db } from './stores/pglite'
+import { db } from '@/stores/pglite'
+import { defineStore } from 'pinia'
+import { ref, type Ref } from 'vue'
 
+//File Class
 class PGFile {
   db: PGlite
   dir: string
@@ -44,4 +47,11 @@ class PGFile {
   }
 }
 
-export { PGFile }
+//Pinia Store
+const useFileStore = defineStore('file', () => {
+  const selectedDirs: Ref<string[]> = ref([])
+
+  return { selectedDirs }
+})
+
+export { PGFile, useFileStore }

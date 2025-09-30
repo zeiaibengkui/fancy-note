@@ -1,6 +1,7 @@
 <template>
   <BApp>
     <div class="app-layout">
+      <!-- Nav -->
       <aside class="sidebar shadow">
         <BButtonGroup vertical class="w-100">
           <BButton to="/" variant="link-secondary" tag="router-link">Home</BButton>
@@ -10,18 +11,19 @@
           <BButton to="/settings" variant="link-secondary" tag="router-link">Settings</BButton>
         </BButtonGroup>
       </aside>
-      <main class="main-content">
-        <router-view v-slot="{ Component }">
-
-          <KeepAlive>
-            <transition name="fade">
-              <Suspense>
-                <component :is="Component" />
-              </Suspense>
-            </transition>
-          </KeepAlive>
-        </router-view>
-      </main>
+      <!-- Main -->
+      <Transition name="fade-from-top">
+        <Suspense>
+          <MainContentAsyncLoad />
+          <template #fallback>
+            <BButton variant="link-secondary" loading class="m-auto" loading-text="PGlite loading..."></BButton>
+          </template>
+        </Suspense>
+      </Transition>
+      <!-- Actions -->
+      <Transition name="fade-from-bottom">
+        <ActionsBar v-if="fileStore.selectedDirs.length"></ActionsBar>
+      </Transition>
     </div>
   </BApp>
 </template>
@@ -30,8 +32,11 @@
 import { BApp, BButtonGroup, BButton } from 'bootstrap-vue-next'
 import { useThemeStore } from './stores/theme'
 import { onMounted } from 'vue'
-import { db } from './stores/pglite'
-import { providePGlite } from '@electric-sql/pglite-vue'
+import MainContentAsyncLoad from './MainContentAsyncLoad.vue'
+import ActionsBar from './ActionsBar.vue'
+import { useFileStore } from './stores/pgfile'
+const fileStore = useFileStore()
+
 
 
 const themeStore = useThemeStore()
@@ -39,9 +44,7 @@ onMounted(() => {
   themeStore.initTheme()
 })
 
-//pglite
 
-providePGlite(db)
 </script>
 
 <style scoped>
@@ -64,22 +67,5 @@ providePGlite(db)
 .main-content {
   flex: 1;
   padding: 2rem;
-}
-
-/*Fade*/
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-  transform: translateY(-20vh);
-}
-
-.fade-leave-active,
-.fade-leave-to {
-  position: absolute;
 }
 </style>
