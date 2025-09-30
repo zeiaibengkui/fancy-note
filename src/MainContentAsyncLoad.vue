@@ -1,7 +1,7 @@
 <template>
   <main class="main-content">
     <router-view v-if="PGliteLoaded" v-slot="{ Component }">
-      <transition name="fade-in-out">
+      <transition name="fade-from-top">
         <KeepAlive>
           <Suspense>
             <component :is="Component" />
@@ -13,12 +13,12 @@
 </template>
 
 <script setup lang="ts">
-import { providePGlite } from '@electric-sql/pglite-vue';
-import { ref } from 'vue';
+import { providePGlite } from '@electric-sql/pglite-vue'
+import { ref } from 'vue'
 
 //PGlite
 
-const PGliteLoaded = ref(false);
+const PGliteLoaded = ref(false)
 
 const { db } = await import('./stores/pglite')
 providePGlite(db)

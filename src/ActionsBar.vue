@@ -1,11 +1,14 @@
 <script lang="ts" setup>
+import { useFileStore } from './stores/pgfile'
 
+const fileStore = useFileStore()
 </script>
 
 <template>
   <div class="out">
     <BButtonGroup id="actions" class="shadow mx-auto">
-      <BButton>abc</BButton>
+      <BButton @click="fileStore.delete()">Delete</BButton>
+      <BButton @click="fileStore.create()">Create</BButton>
     </BButtonGroup>
   </div>
 </template>

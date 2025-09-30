@@ -16,13 +16,18 @@
         <Suspense>
           <MainContentAsyncLoad />
           <template #fallback>
-            <BButton variant="link-secondary" loading class="m-auto" loading-text="PGlite loading..."></BButton>
+            <BButton
+              variant="link-secondary"
+              loading
+              class="m-auto"
+              loading-text="PGlite loading..."
+            ></BButton>
           </template>
         </Suspense>
       </Transition>
       <!-- Actions -->
       <Transition name="fade-from-bottom">
-        <ActionsBar v-if="fileStore.selectedDirs.length"></ActionsBar>
+        <ActionsBar></ActionsBar>
       </Transition>
     </div>
   </BApp>
@@ -34,17 +39,11 @@ import { useThemeStore } from './stores/theme'
 import { onMounted } from 'vue'
 import MainContentAsyncLoad from './MainContentAsyncLoad.vue'
 import ActionsBar from './ActionsBar.vue'
-import { useFileStore } from './stores/pgfile'
-const fileStore = useFileStore()
-
-
 
 const themeStore = useThemeStore()
 onMounted(() => {
   themeStore.initTheme()
 })
-
-
 </script>
 
 <style scoped>

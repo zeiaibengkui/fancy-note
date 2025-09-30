@@ -8,9 +8,12 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    BAvatar: typeof import('bootstrap-vue-next/components/BAvatar')['BAvatar']
+    BBadge: typeof import('bootstrap-vue-next/components/BBadge')['BBadge']
     BButton: typeof import('bootstrap-vue-next/components/BButton')['BButton']
     BButtonGroup: typeof import('bootstrap-vue-next/components/BButton')['BButtonGroup']
     BButtonToolbar: typeof import('bootstrap-vue-next/components/BButton')['BButtonToolbar']
+    BCard: typeof import('bootstrap-vue-next/components/BCard')['BCard']
     BListGroup: typeof import('bootstrap-vue-next/components/BListGroup')['BListGroup']
     BListGroupItem: typeof import('bootstrap-vue-next/components/BListGroup')['BListGroupItem']
     RouterLink: typeof import('vue-router')['RouterLink']
